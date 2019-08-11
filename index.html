@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+        .no-focus-outline:focus {
+            outline: none !important;
+            box-shadow: none;
+        }
+    </style>
+    <title>Переводчик кириллица-латиница</title>
+</head>
+<body>
+    <div class="container-fluid px-0">
+        <div class="border" style="min-height: 70px;">
+            Перевод выполненяется в соотвествии с Указом Президента РК № 569 от 26 октября 2017 года (с изменениями от 19.02.2018 г).
+        </div>
+        <div class="" style="min-height: 200px; font-size: 1.5rem;">
+            <div class="border row no-gutters">
+                <div class="col-6 text-uppercase pl-2" style="font-family: 'Calibri'">Кириллица</div>
+                <div class="col-6 text-uppercase pl-2" style="font-family: 'Calibri'">Латиница (19 февраля 2018 года)</div>
+            </div>
+            <div class="row no-gutters" style="">
+                <div class="col-12 col-md-6 position-relative">
+                    <textarea id="cyrillic" class="no-focus-outline form-control p-2 border-top-0 " style="font-size: 1.5rem; border-radius: 0;" rows="5">2</textarea>
+                    <button id="clear" class="close position-absolute no-focus-outline" style="top: 5.5px; right: 10px;">&times;</button>
+                </div>
+                <div class="col-12 col-md-6">
+                    <textarea id="latin" class="no-focus-outline form-control p-2 border-top-0 border-left-0" style="font-size: 1.5rem; border-radius: 0;" rows="5" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var alphabet = [
+            ['А', 'A'],
+            ['а', 'a'],
+            ['Ә', 'Á'],
+            ['ә', 'á'],
+            ['Б', 'B'],
+            ['б', 'b'],
+            ['В', 'V'],
+            ['в', 'v'],
+            ['Г', 'G'],
+            ['г', 'g'],
+            ['Ғ', 'Ǵ'],
+            ['ғ', 'ǵ'],
+            ['Д', 'D'],
+            ['д', 'd'],
+            ['Е', 'E'],
+            ['е', 'e'],
+            ['Ж', 'J'],
+            ['ж', 'j'],
+            ['З', 'Z'],
+            ['з', 'z'],
+            ['И', 'I'],
+            ['и', 'ı'],
+            ['Й', 'I'],
+            ['й', 'ı'],
+            ['К', 'K'],
+            ['к', 'k'],
+            ['Қ', 'Q'],
+            ['қ', 'q'],
+            ['Л', 'L'],
+            ['л', 'l'],
+            ['М', 'M'],
+            ['м', 'm'],
+            ['Н', 'N'],
+            ['н', 'n'],
+            ['Ң', 'Ń'],
+            ['ң', 'ń'],
+            ['О', 'O'],
+            ['о', 'o'],
+            ['Ө', 'Ó'],
+            ['ө', 'ó'],
+            ['П', 'P'],
+            ['п', 'p'],
+            ['Р', 'R'],
+            ['р', 'r'],
+            ['С', 'S'],
+            ['с', 's'],
+            ['Т', 'T'],
+            ['т', 't'],
+            ['У', 'Ý'],
+            ['у', 'ý'],
+            ['Ұ', 'U'],
+            ['ұ', 'u'],
+            ['Ү', 'Ú'],
+            ['ү', 'ú'],
+            ['Ф', 'F'],
+            ['ф', 'f'],
+            ['Х', 'H'],
+            ['х', 'h'],
+            ['Һ', 'H'],
+            ['һ', 'h'],
+            ['Ч', 'Ch'],
+            ['ч', 'ch'],
+            ['Ш', 'Sh'],
+            ['ш', 'sh'],
+            ['Ы', 'Y'],
+            ['ы', 'y'],
+            ['І', 'I'],
+            ['і', 'i'],
+
+            ['Ё', 'Ó'],
+            ['ё', 'ó'],
+            ['Ц', 'S'],
+            ['ц', 's'],
+            ['Щ', 'Sh'],
+            ['щ', 'sh'],
+            ['Ъ', ''],
+            ['ъ', ''],
+            ['Ь', ''],
+            ['ь', ''],
+            ['Э', 'E'],
+            ['э', 'e'],
+            ['Ю', 'Ú'],
+            ['ю', 'ú'],
+            ['Я', 'Á'],
+            ['я', 'á'],
+
+        ];
+
+        var cyrillic = document.getElementById('cyrillic');
+        var latin = document.getElementById('latin');
+        var clearButton = document.getElementById('clear');
+
+        clearButton.addEventListener('click', function(event) {
+            cyrillic.value = '';
+            latin.value = '';
+        }, false);
+        cyrillic.addEventListener('input', function(event) {
+            var cyrillicText = event.target.value;
+            var latinText = '';
+            for (var i = 0; i < cyrillicText.length; i++) {
+                var pair = alphabet.filter(a => a[0] === cyrillicText.charAt(i));
+                var letter = pair.length === 1 ? pair[0][1] : cyrillicText.charAt(i);
+                latinText += letter;
+            }
+            latin.value = latinText;
+        }, false);
+    </script>
+</body>
+</html>
