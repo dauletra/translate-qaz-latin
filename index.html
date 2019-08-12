@@ -10,28 +10,46 @@
             outline: none !important;
             box-shadow: none;
         }
+        textarea::placeholder {
+            color: #cbcbcb !important;
+        }
     </style>
     <title>Переводчик кириллица-латиница</title>
 </head>
 <body>
     <div class="container-fluid px-0">
-        <div class="border" style="min-height: 70px;">
-            Перевод выполненяется в соотвествии с Указом Президента РК № 569 от 26 октября 2017 года (с изменениями от 19.02.2018 г).
+
+        <div class="border d-flex align-items-center shadow-sm" style="min-height: 55px; font-family: 'Calibri', serif; font-size: 1.3rem;">
+            <div class="pl-4 font-weight-light">
+                <span><span style="color: blue;">B</span>urnoe</span>&nbsp;<span>Переводчик</span>
+            </div>
         </div>
-        <div class="" style="min-height: 200px; font-size: 1.5rem;">
-            <div class="border row no-gutters">
-                <div class="col-6 text-uppercase pl-2" style="font-family: 'Calibri'">Кириллица</div>
-                <div class="col-6 text-uppercase pl-2" style="font-family: 'Calibri'">Латиница (19 февраля 2018 года)</div>
-            </div>
-            <div class="row no-gutters" style="">
-                <div class="col-12 col-md-6 position-relative">
-                    <textarea id="cyrillic" class="no-focus-outline form-control p-2 border-top-0 " style="font-size: 1.5rem; border-radius: 0;" rows="5">2</textarea>
-                    <button id="clear" class="close position-absolute no-focus-outline" style="top: 5.5px; right: 10px;">&times;</button>
+
+        <div class="mt-4"></div>
+
+        <div class="mx-sm-3">
+            <div class="border rounded m-auto shadow" style="min-height: 200px; font-size: 1.2rem; max-width: 900px">
+                <div class="border-bottom row no-gutters text-muted py-2">
+                    <div class="col-6 pl-2" style="font-family: 'Calibri',serif">КИРИЛЛИЦА</div>
+                    <div class="col-6 px-2 text-right text-md-left" style="font-family: 'Calibri',serif">ЛАТИНИЦА</div>
                 </div>
-                <div class="col-12 col-md-6">
-                    <textarea id="latin" class="no-focus-outline form-control p-2 border-top-0 border-left-0" style="font-size: 1.5rem; border-radius: 0;" rows="5" readonly></textarea>
+                <div class="row no-gutters" style="">
+                    <div class="col-12 col-md-6 position-relative">
+                        <textarea id="cyrillic" class="no-focus-outline form-control p-2 border-0 " style="font-size: 1.3rem; font-family: 'Calibri',serif; border-radius: 0; resize: none; max-height: 400px;" rows="5" placeholder="Введите текст здесь"></textarea>
+                        <button id="clear" class="close position-absolute no-focus-outline" style="top: 5.5px; right: 18px; font-size: 2rem;">&times;</button>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <textarea id="latin"    class="no-focus-outline form-control p-2 border-0" style="font-size: 1.3rem; font-family: 'Calibri Light',serif; border-radius: 0; resize: none; max-height: 400px;" rows="5" readonly placeholder="Перевод"></textarea>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div style="min-height: 300px;"></div>
+
+        <div class="border small text-muted">
+            Перевод выполненяется в соотвествии с Указом Президента РК № 569 от 26 октября 2017 года (с изменениями от 19.02.2018 г).
         </div>
     </div>
 
@@ -132,7 +150,10 @@
         clearButton.addEventListener('click', function(event) {
             cyrillic.value = '';
             latin.value = '';
+            // autoexpand
+            autoResize();
         }, false);
+
         cyrillic.addEventListener('input', function(event) {
             var cyrillicText = event.target.value;
             var latinText = '';
@@ -142,7 +163,16 @@
                 latinText += letter;
             }
             latin.value = latinText;
+            // autoexpand
+            autoResize();
         }, false);
+
+        function autoResize() {
+            cyrillic.style.height = 'inherit';
+            cyrillic.style.height = cyrillic.scrollHeight + 'px';
+            latin.style.height = 'inherit';
+            latin.style.height = cyrillic.scrollHeight + 'px';
+        }
     </script>
 </body>
 </html>
