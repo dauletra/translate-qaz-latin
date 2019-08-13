@@ -1,0 +1,23 @@
+{
+  "name": "translate-qaz-latin",
+  "version": "1.0.0",
+  "description": "Сайт для перевода казахского алфавита из кириллицы в латиницу утвержденную 19 ФЕВРАЛЯ 2018 ГОДА.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha js/converter.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dauletra/translate-qaz-latin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dauletra/translate-qaz-latin/issues"
+  },
+  "homepage": "https://github.com/dauletra/translate-qaz-latin#readme",
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
