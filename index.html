@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="static/favicon.png" type="image/png" >
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <style>
@@ -19,38 +20,76 @@
 <body>
     <div class="container-fluid px-0">
 
-        <div class="border d-flex align-items-center shadow-sm" style="min-height: 55px; font-family: 'Calibri', serif; font-size: 1.3rem;">
-            <div class="pl-4 font-weight-light">
+        <div class="border d-flex align-items-center shadow-sm font-weight-light" style="min-height: 55px; font-family: 'Calibri', serif; font-size: 1.3rem;">
+            <div class="pl-4">
                 <span><span style="color: blue;">B</span>urnoe</span>&nbsp;<span>Переводчик</span>
             </div>
         </div>
 
-        <div class="mt-4"></div>
+        <div class="mt-2"></div>
 
         <div class="mx-sm-3">
-            <div class="border rounded m-auto shadow" style="min-height: 200px; font-size: 1.2rem; max-width: 900px">
-                <div class="border-bottom row no-gutters text-muted py-2">
-                    <div class="col-6 pl-2" style="font-family: 'Calibri',serif">КИРИЛЛИЦА</div>
-                    <div class="col-6 px-2 text-right text-md-left" style="font-family: 'Calibri',serif">ЛАТИНИЦА</div>
+
+            <div class="m-auto" style="max-width: 1200px; font-size: 1.15rem; font-family: 'Calibri', serif;">
+                <button id="showAlphabetButton" class="btn btn-sm border shadow-sm mx-3 mx-sm-0" title="Показать алфавит">Aa &Aacute;&aacute; Bb...</button>
+                <div id="alphabetHolder" class="my-3 text-secondary d-none" style="border-left: 2px #a5a5a5 solid;">
+                    <span class="px-1">Aa</span>
+                    <span class="px-1">Áá</span>
+                    <span class="px-1">Bb</span>
+                    <span class="px-1">Dd</span>
+                    <span class="px-1">Ee</span>
+                    <span class="px-1">Ff</span>
+                    <span class="px-1">Gg</span>
+                    <span class="px-1">Ǵǵ</span>
+                    <span class="px-1">Hh</span>
+                    <span class="px-1">Ii</span>
+                    <span class="px-1">Iı</span>
+                    <span class="px-1">Jj</span>
+                    <span class="px-1">Kk</span>
+                    <span class="px-1">Ll</span>
+                    <span class="px-1">Mm</span>
+                    <span class="px-1">Nn</span>
+                    <span class="px-1">Ńń</span>
+                    <span class="px-1">Oo</span>
+                    <span class="px-1">Óó</span>
+                    <span class="px-1">Pp</span>
+                    <span class="px-1">Qq</span>
+                    <span class="px-1">Rr</span>
+                    <span class="px-1">Ss</span>
+                    <span class="px-1">Tt</span>
+                    <span class="px-1">Uu</span>
+                    <span class="px-1">Úú</span>
+                    <span class="px-1">Vv</span>
+                    <span class="px-1">Yy</span>
+                    <span class="px-1">Ýý</span>
+                    <span class="px-1">Zz</span>
+                    <span class="px-1">Sh&nbsp;sh</span>
+                    <span class="px-1">Ch&nbsp;ch</span>
+                </div>
+            </div>
+            <div class="mb-2"></div>
+
+            <div class="border rounded m-auto shadow" style="min-height: 200px; max-width: 1200px">
+                <div class="border-bottom d-flex justify-content-center justify-content-md-between text-muted py-2" style="">
+                    <div class=" px-2" style="font-family: 'Calibri',serif">КИРИЛЛИЦА</div>
+                    <div class="d-md-none">&hArr;</div>
+                    <div class=" px-2 text-right text-md-left" style="font-family: 'Calibri',serif">ЛАТИНИЦА</div>
                 </div>
                 <div class="row no-gutters" style="">
                     <div class="col-12 col-md-6 position-relative">
-                        <textarea id="cyrillic" class="no-focus-outline form-control p-2 border-0 " style="font-size: 1.3rem; font-family: 'Calibri',serif; border-radius: 0; resize: none; max-height: 400px;" rows="5" placeholder="Введите текст здесь"></textarea>
-                        <button id="clear" class="close position-absolute no-focus-outline" style="top: 5.5px; right: 18px; font-size: 2rem;">&times;</button>
+                        <textarea id="cyrillic" class="no-focus-outline form-control p-2 border-0 " style="font-size: 1.3rem; font-family: 'Calibri',serif; border-radius: 0; resize: none;" rows="5" placeholder="Введите текст здесь"></textarea>
+                        <button id="clear" class="close position-absolute no-focus-outline" style="top: 1px; right: 18px; font-size: 2rem;" title="Очистить">&times;</button>
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <textarea id="latin"    class="no-focus-outline form-control p-2 border-0" style="font-size: 1.3rem; font-family: 'Calibri Light',serif; border-radius: 0; resize: none; max-height: 400px;" rows="5" readonly placeholder="Перевод"></textarea>
+                        <textarea id="latin"    class="no-focus-outline form-control p-2 border-0" style="font-size: 1.3rem; font-family: 'Calibri Light',serif; border-radius: 0; resize: none;" rows="5" readonly placeholder="Перевод"></textarea>
+                        <button id="copy" class="close position-absolute no-focus-outline" style="top:8px; right: 18px; font-size: 1.2rem;" title="Копировать">&ccedil;opy</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div style="min-height: 300px;"></div>
-
-        <div class="border small text-muted">
-            Перевод выполненяется в соотвествии с Указом Президента РК № 569 от 26 октября 2017 года (с изменениями от 19.02.2018 г).
-        </div>
     </div>
 
     <script>
@@ -145,14 +184,26 @@
 
         var cyrillic = document.getElementById('cyrillic');
         var latin = document.getElementById('latin');
-        var clearButton = document.getElementById('clear');
+        setMaxHeight();
 
-        clearButton.addEventListener('click', function(event) {
+        window.addEventListener('resize', setMaxHeight);
+
+        document.getElementById('showAlphabetButton').addEventListener('click', function(event) {
+            event.target.classList.add('d-none');
+            document.getElementById('alphabetHolder').classList.remove('d-none');
+        });
+
+        document.getElementById('clear').addEventListener('click', function(event) {
             cyrillic.value = '';
             latin.value = '';
             // autoexpand
             autoResize();
-        }, false);
+        });
+
+        document.getElementById('copy').addEventListener('click', function(event) {
+            latin.select();
+            document.execCommand('copy');
+        });
 
         cyrillic.addEventListener('input', function(event) {
             var cyrillicText = event.target.value;
@@ -165,7 +216,17 @@
             latin.value = latinText;
             // autoexpand
             autoResize();
-        }, false);
+        });
+
+        function setMaxHeight() {
+            if (document.body.clientWidth <= 752) {
+                cyrillic.style.maxHeight = '200px';
+                latin.style.maxHeight = '200px';
+            } else {
+                cyrillic.style.maxHeight = '1000px';
+                latin.style.maxHeight = '1000px';
+            }
+        }
 
         function autoResize() {
             cyrillic.style.height = 'inherit';
