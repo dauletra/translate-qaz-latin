@@ -97,6 +97,7 @@ function convertCyrillicToLatin(cyrillicText) {
     return latinText;
 }
 
-module.exports = {
-    convert: convertCyrillicToLatin
-};
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+    module.exports = {
+        convert: convertCyrillicToLatin
+    };
