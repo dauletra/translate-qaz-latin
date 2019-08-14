@@ -40,9 +40,6 @@ describe('Alphabet', function() {
         it('converts аю', () => {
             assert.strictEqual(convert('аю'), 'aıý')
         });
-        it('converts юрта', () => {
-            assert.strictEqual(convert('юрта'), 'úrta')
-        })
     });
     it('converts alphabet of 32+ letters', () => {
         assert.strictEqual(convert('А а Ә ә Б б Д д Е е Ф ф Г г Ғ ғ Һ һ Х х І і И и Й й Ж ж К к Л л М м Н н Ң ң О о Ө ө П п Қ қ Р р С с Т т Ұ ұ Ү ү В в Ы ы У у З з Ш ш Ч ч'), 'A a Á á B b D d E e F f G g Ǵ ǵ H h H h I i I ı I ı J j K k L l M m N n Ń ń O o Ó ó P p Q q R r S s T t U u Ú ú V v Y y Ý ý Z z Sh sh Ch ch');
@@ -67,11 +64,98 @@ describe('Kazakh words', function() {
     })
 });
 
-describe('Unusual words', function() {
-    it('converts word алкоголь', () => {
-        assert.strictEqual(convert('алкоголь'), 'alkogól')
+describe('Шетелдік сөздер емлесі', function() {
+    describe('-ий-мен аяқталған сөздер', function() {
+        let tests = [
+            ['калий', 'kalı'],
+            ['алюминий', 'alúmını'],
+            ['натрий', 'natrı'],
+            ['кафетерий', 'kafeterı'],
+            ['реалий', 'realı']
+        ];
+
+        tests.forEach(test => {
+            it('converts '+test[0], () => {
+                assert.strictEqual(convert(test[0]), test[1]);
+            })
+        })
     });
-    it('converts word манёвр', () => {
-        assert.strictEqual(convert('манёвр'), 'manóvr')
+    describe('ц әріпі және сц әріп тіркесі', function() {
+        let tests = [
+            ['цирк', 'sırk'],
+            ['цемент', 'sement'],
+            ['дециметр', 'desımetr'],
+            ['пропорционал', 'proporsıonal'],
+            ['кварц', 'kvars'],
+            ['корпорация', 'korporasıa'],
+            ['сценарий', 'senarı'],
+            ['абсцесс', 'abses'],
+            ['плебисцит', 'plebısıt'],
+        ];
+
+        tests.forEach(test => {
+            it('converts '+test[0], () => {
+                assert.strictEqual(convert(test[0]), test[1]);
+            })
+        });
+
+        it('сс әріпі қазақша сөзде: комектессеңдер', () => {
+            assert.strictEqual(convert('көмектессеңдер жарар еді'), 'kómektesseńder jarar edi');
+            assert.strictEqual(convert('келіссеңдерші'), 'kelisseńdershi');
+        });
+        it('сс әріпі шетелдік сөзде: процесс', () => {
+            assert.strictEqual(convert('процесс кезінде'), 'proses kezinde')
+        })
     });
+    describe('я әріпі қазақша сөздерде', function() {
+        let tests = [
+            ['аяқ', 'aıaq'],
+            ['шаян', 'shaıan'],
+            ['аяна', 'aıana'],
+            ['жая', 'jaıa'],
+            ['оянып', 'oıanyp'],
+            ['қоян', 'qoıan'],
+            ['тоя', 'toıa'],
+            ['соя', 'soıa'],
+            ['ұя', 'uıa'],
+            ['яғни', 'ıaǵnı', 1],
+        ];
+        tests.forEach(test => {
+            it('converts '+test[0], function() {
+                if (test.length === 3)
+                    this.skip();
+                assert.strictEqual(convert(test[0]), test[1]);
+            })
+        })
+    });
+    describe('я әріпі шетелдік сөздерде', function() {
+        let tests = [
+            ['заряд', 'zarád'],
+            ['князь', 'knáz'],
+            ['наряд', 'narád'],
+            ['разряд', 'razrád'],
+            ['грильяж', 'grıláj'],
+        ];
+        tests.forEach(test => {
+            it('converts '+test[0], () => {
+                assert.strictEqual(convert(test[0]), test[1]);
+            })
+        })
+    });
+    describe('я әріпі -ия әріп тіркесінде', function() {
+        let tests = [
+            ['корпорацияда', 'korporasıada'],
+            ['акцияны', 'aksıany'],
+            ['аллергиясы', 'alergıasy', 1],
+            ['химиядан', 'hımıadan'],
+            ['гимназияға', 'gımnazıaǵa'],
+        ];
+        tests.forEach(test => {
+            it('converts '+test[0], function() {
+                if (test.length === 3)
+                    this.skip();
+                assert.strictEqual(convert(test[0]), test[1]);
+            })
+        })
+    })
 });

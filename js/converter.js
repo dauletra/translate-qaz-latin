@@ -1,4 +1,4 @@
-var alphabet = [
+const alphabet = [
     ['А', 'A'],
     ['а', 'a'],
     ['Ә', 'Á'],
@@ -86,13 +86,20 @@ var alphabet = [
     ['я', 'á'],
 ];
 
+const words = [
+    ['(.+)(ий)(\\b)?', '$1ı$3'],
+    ['(а|о|ы|е){1}ю', '$1ıý'],
+    ['сц', 's'],
+    ['(ц|s)есс', 'ses'],
+    ['ия', 'ıa'],
+    ['(а|о|ұ)я', '$1ıa'],
+];
+
 function convertCyrillicToLatin(cyrillicText) {
-    cyrillicText = cyrillicText.trim();
-    var latinText = '';
-    for (var i = 0; i < cyrillicText.length; i++) {
-        var pair = alphabet.filter(a => a[0] === cyrillicText.charAt(i));
-        var letter = pair.length === 1 ? pair[0][1] : cyrillicText.charAt(i);
-        latinText += letter;
+    var latinText = cyrillicText.trim();
+    var exps = words.concat(alphabet);
+    for (var i = 0; i < exps.length; i++) {
+        latinText = latinText.replace(new RegExp(exps[i][0], 'g'), exps[i][1]);
     }
     return latinText;
 }
@@ -101,3 +108,4 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
     module.exports = {
         convert: convertCyrillicToLatin
     };
+
